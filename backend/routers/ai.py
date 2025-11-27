@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from datetime import datetime
 import os
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
 
 from models.request_models import AIQueryRequest
 from models.response_models import AIQueryResponse
@@ -16,8 +16,9 @@ router = APIRouter(prefix="/api", tags=["ai"])
 
 # Configure Gemini API
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+client = None
 if GEMINI_API_KEY:
-    genai.configure(api_key=GEMINI_API_KEY)
+    client = genai.Client(api_key=GEMINI_API_KEY)
 
 
 @router.post("/ai/query", response_model=AIQueryResponse)
@@ -38,17 +39,14 @@ async def query_ai(
     try:
         print(f"[AI] Received query: {request.user_query[:50]}...")
         print(f"[AI] API Key configured: {bool(GEMINI_API_KEY)}")
+        print(f"[AI] Client initialized: {bool(client)}")
         
-        if not GEMINI_API_KEY:
-            print("[AI] ERROR: GEMINI_API_KEY not found in environment")
+        if not client:
+            print("[AI] ERROR: Gemini client not initialized")
             raise HTTPException(
                 status_code=500,
                 detail="GEMINI_API_KEY not configured. Please set it in the .env file."
             )
-        
-        # Create the model
-        print("[AI] Creating Gemini model...")
-        model = genai.GenerativeModel('gemini-pro')
         
         # Prepare the prompt with context
         system_prompt = """You are an expert Algorithm Learning Assistant. Answer questions about sorting algorithms, search algorithms, time complexity, space complexity, and algorithm design. Keep responses concise and educational.
@@ -65,9 +63,12 @@ Provide accurate technical explanations and help users understand algorithm conc
         
         full_prompt = f"{system_prompt}\n\n{user_prompt}"
         
-        # Generate response
-        print("[AI] Generating content...")
-        response = model.generate_content(full_prompt)
+        # Generate response using new SDK
+        print("[AI] Generating content with gemini-2.0-flash-exp...")
+        response = client.models.generate_content(
+            model="gemini-2.0-flash-exp",
+            contents=full_prompt
+        )
         print(f"[AI] Response received: {bool(response.text)}")
         
         if not response.text:
