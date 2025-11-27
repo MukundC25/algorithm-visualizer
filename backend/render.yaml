@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: algorithm-visualizer-backend
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        value: sqlite:///./algorithm_visualizer.db
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        fromGroup: web
+      - key: PYTHON_VERSION
+        value: 3.11.0
