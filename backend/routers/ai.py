@@ -48,7 +48,7 @@ async def query_ai(
         
         # Create the model
         print("[AI] Creating Gemini model...")
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-pro')
         
         # Prepare the prompt with context
         system_prompt = """You are an expert Algorithm Learning Assistant. Answer questions about sorting algorithms, search algorithms, time complexity, space complexity, and algorithm design. Keep responses concise and educational.
