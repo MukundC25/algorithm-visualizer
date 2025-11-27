@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { Textarea } from "@/components/ui/textarea"
 import { Play, Pause, RotateCcw, SkipForward, Settings, MessageCircle, Send, Bot, User, Loader } from "lucide-react"
 import { runAlgorithm, askAI, type AlgorithmStep, type ExecuteAlgorithmResponse } from "@/lib/api"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const algorithms = {
   bubble: { name: "Bubble Sort", type: "sorting", complexity: "O(n²)" },
@@ -745,12 +746,15 @@ export default function AlgorithmVisualizer() {
   const isSearchAlgorithm = algorithms[selectedAlgorithm].type === "searching"
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 p-4">
+    <div className="min-h-screen bg-background text-foreground p-4">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold text-gray-900">Algorithm Visualizer</h1>
-          <p className="text-lg text-gray-600">
+        <div className="relative text-center space-y-2">
+          <div className="absolute right-0 top-0">
+            <ThemeToggle />
+          </div>
+          <h1 className="text-4xl font-bold">Algorithm Visualizer</h1>
+          <p className="text-lg text-muted-foreground">
             Interactive platform for understanding algorithms through visualization and AI assistance
           </p>
         </div>
