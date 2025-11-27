@@ -4,6 +4,8 @@ backend/venv
 backend/__pycache__
 **/__pycache__
 **/*.pyc
+pnpm-lock.yaml
+yarn.lock
 
 # Environment files
 .env
