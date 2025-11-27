@@ -31,10 +31,12 @@
 4. Environment:
    ```
    NEXT_PUBLIC_API_URL=https://YOUR-BACKEND-URL.onrender.com/api
-   NODE_VERSION=18
+   NODE_VERSION=20
    ```
 5. Create Static Site
 6. Copy frontend URL
+
+**Note**: If using Blueprint (render.yaml), it will auto-configure. Just set `NEXT_PUBLIC_API_URL` in environment.
 
 ## Update CORS
 
