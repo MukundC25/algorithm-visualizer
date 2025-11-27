@@ -5,9 +5,12 @@
  * All algorithm logic has been moved to the backend.
  */
 
-const API_BASE_URL = typeof window !== 'undefined' 
-  ? (window as any).NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
-  : 'http://localhost:8000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
+
+// Log API URL for debugging (only in browser)
+if (typeof window !== 'undefined') {
+  console.log('[API] Using backend URL:', API_BASE_URL);
+}
 
 // Type definitions matching backend response models
 export interface AlgorithmStep {
