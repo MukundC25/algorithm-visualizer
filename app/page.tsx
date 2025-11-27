@@ -760,25 +760,25 @@ export default function AlgorithmVisualizer() {
         </div>
 
         {/* Controls */}
-        <Card className="bg-white border-gray-200">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-gray-900">
+            <CardTitle className="flex items-center gap-2 text-foreground">
               <Settings className="w-5 h-5" />
               Algorithm Controls
             </CardTitle>
-            <CardDescription className="text-gray-600">
+            <CardDescription className="text-muted-foreground">
               Select an algorithm and customize the visualization parameters
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="space-y-2">
-                <Label className="text-gray-700">Algorithm</Label>
+                <Label className="text-foreground">Algorithm</Label>
                 <Select value={selectedAlgorithm} onValueChange={(value) => setSelectedAlgorithm(value)}>
-                  <SelectTrigger className="bg-white border-gray-300 text-gray-900">
+                  <SelectTrigger className="bg-card border-border text-card-foreground">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border-gray-300">
+                  <SelectContent className="bg-card border-border">
                     <SelectItem value="bubble">Bubble Sort</SelectItem>
                     <SelectItem value="quick">Quick Sort</SelectItem>
                     <SelectItem value="merge">Merge Sort</SelectItem>
@@ -791,26 +791,26 @@ export default function AlgorithmVisualizer() {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-gray-700">Speed: {speed[0]}%</Label>
+                <Label className="text-foreground">Speed: {speed[0]}%</Label>
                 <Slider value={speed} onValueChange={setSpeed} max={100} min={1} step={1} className="w-full" />
               </div>
 
               {!isSearchAlgorithm && (
                 <div className="space-y-2">
-                  <Label className="text-gray-700">Array Size: {arraySize[0]}</Label>
+                  <Label className="text-foreground">Array Size: {arraySize[0]}</Label>
                   <Slider value={arraySize} onValueChange={setArraySize} max={50} min={5} step={1} className="w-full" />
                 </div>
               )}
 
               {isSearchAlgorithm && (
                 <div className="space-y-2">
-                  <Label className="text-gray-700">Search Target</Label>
+                  <Label className="text-foreground">Search Target</Label>
                   <Input
                     type="number"
                     value={searchTarget}
                     onChange={(e) => setSearchTarget(e.target.value)}
                     placeholder="Enter target value"
-                    className="bg-white border-gray-300 text-gray-900"
+                    className="bg-card border-border text-card-foreground"
                   />
                 </div>
               )}
@@ -824,7 +824,7 @@ export default function AlgorithmVisualizer() {
               <Button
                 onClick={handleReset}
                 variant="outline"
-                className="border-gray-300 text-gray-900 hover:bg-gray-100 bg-transparent"
+                className="border-border text-card-foreground hover:bg-secondary bg-transparent"
               >
                 <RotateCcw className="w-4 h-4 mr-2" />
                 Reset
@@ -833,7 +833,7 @@ export default function AlgorithmVisualizer() {
                 onClick={handleStepForward}
                 variant="outline"
                 disabled={state === "running" || currentStep >= steps.length - 1}
-                className="border-gray-300 text-gray-900 hover:bg-gray-100"
+                className="border-border text-card-foreground hover:bg-secondary"
               >
                 <SkipForward className="w-4 h-4 mr-2" />
                 Step
@@ -841,7 +841,7 @@ export default function AlgorithmVisualizer() {
               <Button
                 onClick={generateRandomArray}
                 variant="outline"
-                className="border-gray-300 text-gray-900 hover:bg-gray-100 bg-transparent"
+                className="border-border text-card-foreground hover:bg-secondary bg-transparent"
               >
                 Generate Random
               </Button>
@@ -856,18 +856,18 @@ export default function AlgorithmVisualizer() {
             </div>
 
             <div className="space-y-2">
-              <Label className="text-gray-700">Custom Input (comma-separated numbers)</Label>
+              <Label className="text-foreground">Custom Input (comma-separated numbers)</Label>
               <div className="flex gap-2">
                 <Input
                   value={customInput}
                   onChange={(e) => setCustomInput(e.target.value)}
                   placeholder="e.g., 64, 34, 25, 12, 22, 11, 90"
-                  className="flex-1 bg-white border-gray-300 text-gray-900"
+                  className="flex-1 bg-card border-border text-card-foreground"
                 />
                 <Button
                   onClick={handleCustomInput}
                   variant="outline"
-                  className="border-gray-300 text-gray-900 hover:bg-gray-100 bg-transparent"
+                  className="border-border text-card-foreground hover:bg-secondary bg-transparent"
                 >
                   Apply
                 </Button>
@@ -878,21 +878,21 @@ export default function AlgorithmVisualizer() {
 
         {/* Algorithm Info */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="bg-white border-gray-200">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg text-gray-900">{algorithms[selectedAlgorithm].name}</CardTitle>
+              <CardTitle className="text-lg text-foreground">{algorithms[selectedAlgorithm].name}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-600">Type:</span>
-                  <Badge variant="secondary" className="bg-gray-100 text-gray-900">
+                  <span className="text-sm text-muted-foreground">Type:</span>
+                  <Badge variant="secondary" className="bg-secondary text-card-foreground">
                     {algorithms[selectedAlgorithm].type}
                   </Badge>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-600">Complexity:</span>
-                  <Badge variant="outline" className="border-gray-300 text-gray-900">
+                  <span className="text-sm text-muted-foreground">Complexity:</span>
+                  <Badge variant="outline" className="border-border text-card-foreground">
                     {algorithms[selectedAlgorithm].complexity}
                   </Badge>
                 </div>
@@ -900,25 +900,25 @@ export default function AlgorithmVisualizer() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white border-gray-200">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg text-gray-900">Statistics</CardTitle>
+              <CardTitle className="text-lg text-foreground">Statistics</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-600">Comparisons:</span>
-                  <span className="font-mono text-gray-900">{stats.comparisons}</span>
+                  <span className="text-sm text-muted-foreground">Comparisons:</span>
+                  <span className="font-mono text-foreground">{stats.comparisons}</span>
                 </div>
                 {!isSearchAlgorithm && (
                   <div className="flex justify-between">
-                    <span className="text-sm text-gray-600">Swaps:</span>
-                    <span className="font-mono text-gray-900">{stats.swaps}</span>
+                    <span className="text-sm text-muted-foreground">Swaps:</span>
+                    <span className="font-mono text-foreground">{stats.swaps}</span>
                   </div>
                 )}
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-600">Progress:</span>
-                  <span className="font-mono text-gray-900">
+                  <span className="text-sm text-muted-foreground">Progress:</span>
+                  <span className="font-mono text-foreground">
                     {steps.length > 0 ? `${currentStep + 1}/${steps.length}` : "0/0"}
                   </span>
                 </div>
@@ -926,12 +926,12 @@ export default function AlgorithmVisualizer() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white border-gray-200">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg text-gray-900">Current Step</CardTitle>
+              <CardTitle className="text-lg text-foreground">Current Step</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm text-foreground">
                 {steps.length > 0 && currentStep < steps.length
                   ? steps[currentStep].description
                   : "Ready to start visualization"}
@@ -945,25 +945,25 @@ export default function AlgorithmVisualizer() {
           {/* Algorithm Explanation */}
           <div className="lg:col-span-2 space-y-6">
             {/* Algorithm Explanation */}
-            <Card className="bg-white border-gray-200">
+            <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-gray-900">How {algorithms[selectedAlgorithm].name} Works</CardTitle>
-                <CardDescription className="text-gray-600">Understanding the algorithm step by step</CardDescription>
+                <CardTitle className="text-foreground">How {algorithms[selectedAlgorithm].name} Works</CardTitle>
+                <CardDescription className="text-muted-foreground">Understanding the algorithm step by step</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {selectedAlgorithm === "bubble" && (
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-lg text-gray-900">Algorithm Steps:</h4>
-                    <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700">
+                    <h4 className="font-semibold text-lg text-card-foreground">Algorithm Steps:</h4>
+                    <ol className="list-decimal list-inside space-y-2 text-sm text-foreground">
                       <li>Compare adjacent elements in the array</li>
                       <li>If the left element is greater than the right, swap them</li>
                       <li>Continue through the entire array</li>
                       <li>Repeat until no more swaps are needed</li>
                       <li>The largest elements "bubble up" to the end</li>
                     </ol>
-                    <div className="bg-gray-50 p-3 rounded-lg">
-                      <h5 className="font-medium mb-2 text-gray-900">Why it's called "Bubble Sort":</h5>
-                      <p className="text-sm text-gray-700">
+                    <div className="bg-muted p-3 rounded-lg">
+                      <h5 className="font-medium mb-2 text-card-foreground">Why it's called "Bubble Sort":</h5>
+                      <p className="text-sm text-foreground">
                         Like bubbles rising to the surface, the largest elements gradually move to the end of the array
                         with each pass.
                       </p>
@@ -973,17 +973,17 @@ export default function AlgorithmVisualizer() {
 
                 {selectedAlgorithm === "quick" && (
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-lg text-gray-900">Algorithm Steps:</h4>
-                    <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700">
+                    <h4 className="font-semibold text-lg text-card-foreground">Algorithm Steps:</h4>
+                    <ol className="list-decimal list-inside space-y-2 text-sm text-foreground">
                       <li>Choose a pivot element (usually the last element)</li>
                       <li>Partition: move smaller elements to the left, larger to the right</li>
                       <li>Place the pivot in its correct sorted position</li>
                       <li>Recursively apply the same process to left and right subarrays</li>
                       <li>Continue until all elements are in their correct positions</li>
                     </ol>
-                    <div className="bg-gray-50 p-3 rounded-lg">
-                      <h5 className="font-medium mb-2 text-gray-900">Key Insight:</h5>
-                      <p className="text-sm text-gray-700">
+                    <div className="bg-muted p-3 rounded-lg">
+                      <h5 className="font-medium mb-2 text-card-foreground">Key Insight:</h5>
+                      <p className="text-sm text-foreground">
                         Quick Sort uses "divide and conquer" - it breaks the problem into smaller subproblems and solves
                         them independently.
                       </p>
@@ -993,17 +993,17 @@ export default function AlgorithmVisualizer() {
 
                 {selectedAlgorithm === "merge" && (
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-lg text-gray-900">Algorithm Steps:</h4>
-                    <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700">
+                    <h4 className="font-semibold text-lg text-card-foreground">Algorithm Steps:</h4>
+                    <ol className="list-decimal list-inside space-y-2 text-sm text-foreground">
                       <li>Divide the array into two halves recursively until single elements remain</li>
                       <li>Each single element is considered sorted</li>
                       <li>Compare elements from both sorted halves and merge them in sorted order</li>
                       <li>Continue merging until all subarrays are combined into one sorted array</li>
                       <li>The result is a completely sorted array</li>
                     </ol>
-                    <div className="bg-gray-50 p-3 rounded-lg">
-                      <h5 className="font-medium mb-2 text-gray-900">Key Features:</h5>
-                      <p className="text-sm text-gray-700">
+                    <div className="bg-muted p-3 rounded-lg">
+                      <h5 className="font-medium mb-2 text-card-foreground">Key Features:</h5>
+                      <p className="text-sm text-foreground">
                         Merge Sort is stable and guarantees O(n log n) time complexity. It uses extra space O(n) for
                         temporary arrays during merging, but is ideal for linked lists and guaranteed performance.
                       </p>
@@ -1013,17 +1013,17 @@ export default function AlgorithmVisualizer() {
 
                 {selectedAlgorithm === "selection" && (
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-lg text-gray-900">Algorithm Steps:</h4>
-                    <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700">
+                    <h4 className="font-semibold text-lg text-card-foreground">Algorithm Steps:</h4>
+                    <ol className="list-decimal list-inside space-y-2 text-sm text-foreground">
                       <li>Start with the first element as the beginning of the sorted portion</li>
                       <li>Find the smallest element in the unsorted portion</li>
                       <li>Swap the smallest element with the first element of the unsorted portion</li>
                       <li>Move the boundary between sorted and unsorted portions one step right</li>
                       <li>Repeat until the entire array is sorted</li>
                     </ol>
-                    <div className="bg-gray-50 p-3 rounded-lg">
-                      <h5 className="font-medium mb-2 text-gray-900">Key Characteristics:</h5>
-                      <p className="text-sm text-gray-700">
+                    <div className="bg-muted p-3 rounded-lg">
+                      <h5 className="font-medium mb-2 text-card-foreground">Key Characteristics:</h5>
+                      <p className="text-sm text-foreground">
                         Selection Sort has O(n²) complexity but makes minimal swaps (at most n-1). It's useful when swap
                         operations are expensive, but generally slower than Quick Sort or Merge Sort.
                       </p>
@@ -1033,17 +1033,17 @@ export default function AlgorithmVisualizer() {
 
                 {selectedAlgorithm === "insertion" && (
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-lg text-gray-900">Algorithm Steps:</h4>
-                    <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700">
+                    <h4 className="font-semibold text-lg text-card-foreground">Algorithm Steps:</h4>
+                    <ol className="list-decimal list-inside space-y-2 text-sm text-foreground">
                       <li>Start with the second element as the "key" to be inserted</li>
                       <li>Compare the key with elements in the sorted portion (to its left)</li>
                       <li>Shift elements greater than the key one position to the right</li>
                       <li>Insert the key into its correct position in the sorted portion</li>
                       <li>Repeat for each unsorted element until the array is completely sorted</li>
                     </ol>
-                    <div className="bg-gray-50 p-3 rounded-lg">
-                      <h5 className="font-medium mb-2 text-gray-900">Why It's Efficient:</h5>
-                      <p className="text-sm text-gray-700">
+                    <div className="bg-muted p-3 rounded-lg">
+                      <h5 className="font-medium mb-2 text-card-foreground">Why It's Efficient:</h5>
+                      <p className="text-sm text-foreground">
                         Insertion Sort is adaptive - it performs well on nearly sorted arrays and is O(n) in best case.
                         It's stable and works well for small datasets. Java's Arrays.sort() uses insertion sort for
                         small arrays.
@@ -1054,17 +1054,17 @@ export default function AlgorithmVisualizer() {
 
                 {selectedAlgorithm === "linear" && (
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-lg text-gray-900">Algorithm Steps:</h4>
-                    <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700">
+                    <h4 className="font-semibold text-lg text-card-foreground">Algorithm Steps:</h4>
+                    <ol className="list-decimal list-inside space-y-2 text-sm text-foreground">
                       <li>Start from the first element of the array</li>
                       <li>Compare the current element with the target value</li>
                       <li>If they match, return the position (found!)</li>
                       <li>If not, move to the next element</li>
                       <li>Repeat until found or end of array is reached</li>
                     </ol>
-                    <div className="bg-gray-50 p-3 rounded-lg">
-                      <h5 className="font-medium mb-2 text-gray-900">When to use Linear Search:</h5>
-                      <p className="text-sm text-gray-700">
+                    <div className="bg-muted p-3 rounded-lg">
+                      <h5 className="font-medium mb-2 text-card-foreground">When to use Linear Search:</h5>
+                      <p className="text-sm text-foreground">
                         Best for unsorted arrays or when you need to find all occurrences. Simple but can be slow for
                         large datasets.
                       </p>
@@ -1074,8 +1074,8 @@ export default function AlgorithmVisualizer() {
 
                 {selectedAlgorithm === "binary" && (
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-lg text-gray-900">Algorithm Steps:</h4>
-                    <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700">
+                    <h4 className="font-semibold text-lg text-card-foreground">Algorithm Steps:</h4>
+                    <ol className="list-decimal list-inside space-y-2 text-sm text-foreground">
                       <li>Array must be sorted first</li>
                       <li>Find the middle element</li>
                       <li>Compare middle element with target</li>
@@ -1083,9 +1083,9 @@ export default function AlgorithmVisualizer() {
                       <li>If target is larger, search right half</li>
                       <li>Repeat until found or search space is empty</li>
                     </ol>
-                    <div className="bg-gray-50 p-3 rounded-lg">
-                      <h5 className="font-medium mb-2 text-gray-900">Why it's so fast:</h5>
-                      <p className="text-sm text-gray-700">
+                    <div className="bg-muted p-3 rounded-lg">
+                      <h5 className="font-medium mb-2 text-card-foreground">Why it's so fast:</h5>
+                      <p className="text-sm text-foreground">
                         Each comparison eliminates half of the remaining elements, making it much faster than linear
                         search for sorted data.
                       </p>
@@ -1096,10 +1096,10 @@ export default function AlgorithmVisualizer() {
             </Card>
 
             {/* Enhanced Visualization */}
-            <Card className="bg-white border-gray-200">
+            <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-gray-900">Visual Representation</CardTitle>
-                <CardDescription className="text-gray-600">
+                <CardTitle className="text-foreground">Visual Representation</CardTitle>
+                <CardDescription className="text-muted-foreground">
                   {isSearchAlgorithm
                     ? `Searching for value: ${searchTarget || "N/A"}`
                     : "Watch how elements move and get sorted"}
@@ -1108,7 +1108,7 @@ export default function AlgorithmVisualizer() {
               <CardContent>
                 <div className="space-y-6">
                   {/* Array Visualization */}
-                  <div className="bg-gray-50 rounded-lg p-6 border-2 border-gray-300">
+                  <div className="bg-muted rounded-lg p-6 border-2 border-border">
                     <div className="flex items-end justify-center gap-2 min-h-[300px] overflow-x-auto pb-4">
                       {array.map((element, index) => (
                         <div
@@ -1116,7 +1116,7 @@ export default function AlgorithmVisualizer() {
                           className="flex flex-col items-center space-y-2 transition-all duration-500 ease-in-out"
                         >
                           {/* Element indicator */}
-                          <div className="text-xs font-medium text-gray-600 h-4">
+                          <div className="text-xs font-medium text-muted-foreground h-4">
                             {element.isComparing && "👀"}
                             {element.isSwapping && "🔄"}
                             {element.isPivot && "📍"}
@@ -1139,7 +1139,7 @@ export default function AlgorithmVisualizer() {
                         !element.isPivot &&
                         !element.isSorted &&
                         !element.isFound
-                          ? "bg-gray-300 border-gray-400"
+                          ? "bg-muted border-border"
                           : ""
                       }
                     `}
@@ -1149,11 +1149,11 @@ export default function AlgorithmVisualizer() {
                             }}
                           >
                             {/* Value label inside bar */}
-                            <span className="text-xs font-bold text-gray-900 mb-1">{element.value}</span>
+                            <span className="text-xs font-bold text-card-foreground mb-1">{element.value}</span>
                           </div>
 
                           {/* Index label */}
-                          <div className="text-xs text-gray-600 font-mono">[{index}]</div>
+                          <div className="text-xs text-muted-foreground font-mono">[{index}]</div>
                         </div>
                       ))}
                     </div>
@@ -1161,36 +1161,36 @@ export default function AlgorithmVisualizer() {
 
                   {/* Enhanced Legend with explanations */}
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 text-sm">
-                    <div className="flex items-center gap-2 p-2 bg-gray-100 rounded">
-                      <div className="w-4 h-4 bg-gray-300 border border-gray-400 rounded"></div>
-                      <span className="text-gray-900">Unsorted</span>
+                    <div className="flex items-center gap-2 p-2 bg-secondary rounded">
+                      <div className="w-4 h-4 bg-muted border border-border rounded"></div>
+                      <span className="text-foreground">Unsorted</span>
                     </div>
                     <div className="flex items-center gap-2 p-2 bg-yellow-100 rounded">
                       <div className="w-4 h-4 bg-yellow-300 border border-yellow-500 rounded"></div>
-                      <span className="text-gray-900">Comparing 👀</span>
+                      <span className="text-foreground">Comparing 👀</span>
                     </div>
                     <div className="flex items-center gap-2 p-2 bg-red-100 rounded">
                       <div className="w-4 h-4 bg-red-400 border border-red-600 rounded"></div>
-                      <span className="text-gray-900">Swapping 🔄</span>
+                      <span className="text-foreground">Swapping 🔄</span>
                     </div>
                     <div className="flex items-center gap-2 p-2 bg-purple-100 rounded">
                       <div className="w-4 h-4 bg-purple-400 border border-purple-600 rounded"></div>
-                      <span className="text-gray-900">Pivot 📍</span>
+                      <span className="text-foreground">Pivot 📍</span>
                     </div>
                     <div className="flex items-center gap-2 p-2 bg-green-100 rounded">
                       <div className="w-4 h-4 bg-green-400 border border-green-600 rounded"></div>
-                      <span className="text-gray-900">Sorted ✅</span>
+                      <span className="text-foreground">Sorted ✅</span>
                     </div>
                     <div className="flex items-center gap-2 p-2 bg-blue-100 rounded">
                       <div className="w-4 h-4 bg-blue-400 border border-blue-600 rounded"></div>
-                      <span className="text-gray-900">Found 🎯</span>
+                      <span className="text-foreground">Found 🎯</span>
                     </div>
                   </div>
 
                   {/* Step Navigator */}
                   {steps.length > 0 && (
-                    <div className="bg-gray-100 p-4 rounded-lg">
-                      <h4 className="font-semibold mb-3 text-gray-900">Step Navigator</h4>
+                    <div className="bg-secondary p-4 rounded-lg">
+                      <h4 className="font-semibold mb-3 text-card-foreground">Step Navigator</h4>
                       <div className="flex gap-1 overflow-x-auto pb-2">
                         {steps.map((step, index) => (
                           <button
@@ -1206,7 +1206,7 @@ export default function AlgorithmVisualizer() {
                           ? "bg-blue-600 text-white"
                           : index < currentStep
                             ? "bg-green-600 text-white hover:bg-green-500"
-                            : "bg-gray-300 text-gray-900 hover:bg-gray-400"
+                            : "bg-muted text-card-foreground hover:bg-muted/80"
                       }
                     `}
                           >
@@ -1214,7 +1214,7 @@ export default function AlgorithmVisualizer() {
                           </button>
                         ))}
                       </div>
-                      <p className="text-xs text-gray-600 mt-2">
+                      <p className="text-xs text-muted-foreground mt-2">
                         Click any step number to jump to that point in the algorithm
                       </p>
                     </div>
@@ -1226,17 +1226,17 @@ export default function AlgorithmVisualizer() {
 
           {showChatbot && (
             <div className="lg:col-span-1">
-              <Card className="bg-white border-gray-200 h-[600px] flex flex-col">
+              <Card className="bg-card border-border h-[600px] flex flex-col">
                 <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-2 text-gray-900">
+                  <CardTitle className="flex items-center gap-2 text-foreground">
                     <Bot className="w-5 h-5 text-blue-600" />
                     AI Learning Assistant
                   </CardTitle>
-                  <CardDescription className="text-gray-600">Ask questions and test your knowledge</CardDescription>
+                  <CardDescription className="text-muted-foreground">Ask questions and test your knowledge</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-1 flex flex-col space-y-4">
                   {/* Chat Messages */}
-                  <div className="flex-1 overflow-y-auto space-y-3 bg-gray-50 p-3 rounded-lg">
+                  <div className="flex-1 overflow-y-auto space-y-3 bg-muted p-3 rounded-lg">
                     {chatMessages.map((message, index) => (
                       <div
                         key={index}
@@ -1260,7 +1260,7 @@ export default function AlgorithmVisualizer() {
                             className={`p-3 rounded-lg break-words ${
                               message.type === "user"
                                 ? "bg-blue-600 text-white"
-                                : "bg-gray-100 text-gray-900 border border-gray-300"
+                                : "bg-secondary text-card-foreground border border-border"
                             }`}
                           >
                             <p className="text-sm whitespace-pre-wrap">{message.content}</p>
@@ -1273,7 +1273,7 @@ export default function AlgorithmVisualizer() {
                         <div className="w-6 h-6 rounded-full flex items-center justify-center bg-green-600 flex-shrink-0">
                           <Bot className="w-3 h-3 text-white" />
                         </div>
-                        <div className="bg-gray-100 text-gray-900 p-3 rounded-lg border border-gray-300 flex items-center gap-2">
+                        <div className="bg-secondary text-card-foreground p-3 rounded-lg border border-border flex items-center gap-2">
                           <Loader className="w-4 h-4 animate-spin" />
                           <span className="text-sm">Thinking...</span>
                         </div>
@@ -1293,7 +1293,7 @@ export default function AlgorithmVisualizer() {
                           }
                         }}
                         placeholder="Ask me about algorithms, complexity, or anything else..."
-                        className="flex-1 bg-white border-gray-300 text-gray-900 resize-none"
+                        className="flex-1 bg-card border-border text-card-foreground resize-none"
                         rows={3}
                         disabled={isAiLoading}
                       />
@@ -1301,7 +1301,7 @@ export default function AlgorithmVisualizer() {
                         <Send className="w-4 h-4" />
                       </Button>
                     </div>
-                    <p className="text-xs text-gray-600">Press Ctrl+Enter to send</p>
+                    <p className="text-xs text-muted-foreground">Press Ctrl+Enter to send</p>
                   </form>
                 </CardContent>
               </Card>
@@ -1311,10 +1311,10 @@ export default function AlgorithmVisualizer() {
           {/* Current Step Explanation (when chatbot is closed) */}
           {!showChatbot && (
             <div className="lg:col-span-1">
-              <Card className="bg-white border-gray-200">
+              <Card className="bg-card border-border">
                 <CardHeader>
-                  <CardTitle className="text-gray-900">Current Step Explanation</CardTitle>
-                  <CardDescription className="text-gray-600">What's happening right now</CardDescription>
+                  <CardTitle className="text-foreground">Current Step Explanation</CardTitle>
+                  <CardDescription className="text-muted-foreground">What's happening right now</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
@@ -1332,24 +1332,24 @@ export default function AlgorithmVisualizer() {
                     {steps.length > 0 && (
                       <div className="space-y-3">
                         <div className="grid grid-cols-2 gap-4">
-                          <div className="bg-gray-100 p-3 rounded">
-                            <div className="text-sm text-gray-600">Comparisons Made</div>
-                            <div className="text-2xl font-bold text-gray-900">{stats.comparisons}</div>
+                          <div className="bg-secondary p-3 rounded">
+                            <div className="text-sm text-muted-foreground">Comparisons Made</div>
+                            <div className="text-2xl font-bold text-card-foreground">{stats.comparisons}</div>
                           </div>
                           {!isSearchAlgorithm && (
-                            <div className="bg-gray-100 p-3 rounded">
-                              <div className="text-sm text-gray-600">Swaps Made</div>
-                              <div className="text-2xl font-bold text-gray-900">{stats.swaps}</div>
+                            <div className="bg-secondary p-3 rounded">
+                              <div className="text-sm text-muted-foreground">Swaps Made</div>
+                              <div className="text-2xl font-bold text-card-foreground">{stats.swaps}</div>
                             </div>
                           )}
                         </div>
 
                         <div className="space-y-2">
-                          <div className="flex justify-between text-sm text-gray-700">
+                          <div className="flex justify-between text-sm text-foreground">
                             <span>Progress</span>
                             <span>{Math.round(((currentStep + 1) / steps.length) * 100)}%</span>
                           </div>
-                          <div className="w-full bg-gray-300 rounded-full h-2">
+                          <div className="w-full bg-muted rounded-full h-2">
                             <div
                               className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                               style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
