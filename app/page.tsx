@@ -89,13 +89,16 @@ export default function AlgorithmVisualizer() {
   const generateAiResponse = async (userMessage) => {
     setIsAiLoading(true)
     try {
+      console.log("[AI] Sending query to backend...")
       const response = await askAI(userMessage, selectedAlgorithm)
+      console.log("[AI] Response received:", response)
       addMessage("bot", response.response)
     } catch (error) {
       console.error("[API] AI error:", error)
+      const errorMessage = error instanceof Error ? error.message : String(error)
       addMessage(
         "bot",
-        "I'm having trouble connecting to the AI service. Please make sure the backend is running and the Gemini API key is configured.",
+        `AI Error: ${errorMessage}\n\nPlease check:\n1. Backend is running\n2. Gemini API key is set in Render environment\n3. Backend logs for details`,
       )
     } finally {
       setIsAiLoading(false)

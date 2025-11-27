@@ -36,13 +36,18 @@ async def query_ai(
         AI-generated response
     """
     try:
+        print(f"[AI] Received query: {request.user_query[:50]}...")
+        print(f"[AI] API Key configured: {bool(GEMINI_API_KEY)}")
+        
         if not GEMINI_API_KEY:
+            print("[AI] ERROR: GEMINI_API_KEY not found in environment")
             raise HTTPException(
                 status_code=500,
                 detail="GEMINI_API_KEY not configured. Please set it in the .env file."
             )
         
         # Create the model
+        print("[AI] Creating Gemini model...")
         model = genai.GenerativeModel('gemini-1.5-flash')
         
         # Prepare the prompt with context
@@ -61,15 +66,19 @@ Provide accurate technical explanations and help users understand algorithm conc
         full_prompt = f"{system_prompt}\n\n{user_prompt}"
         
         # Generate response
+        print("[AI] Generating content...")
         response = model.generate_content(full_prompt)
+        print(f"[AI] Response received: {bool(response.text)}")
         
         if not response.text:
+            print("[AI] ERROR: Empty response from Gemini")
             raise HTTPException(
                 status_code=500,
                 detail="Failed to generate AI response"
             )
         
         ai_response = response.text
+        print(f"[AI] Success! Response length: {len(ai_response)}")
         
         # Store query in database
         query_record = AIQuery(
